@@ -17,7 +17,7 @@ public class District {
     private String name;
 
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=13, fraction=2)
+    @Digits(integer = 13, fraction = 2)
     private BigDecimal valueM2;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,10 @@ public class District {
     }
 
     public District() {
+    }
+
+    public District(long id) {
+        this.id = id;
     }
 
     public String getName() {

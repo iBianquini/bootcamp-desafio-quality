@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Room {
@@ -16,12 +19,12 @@ public class Room {
     private String name;
 
     @Range(max = 25, message = "A largura máxima permitida por comodo é de 25 metros")
-    @NotEmpty(message = "A largura do comodo não pode estar vazia")
+    @NotNull(message = "A largura do comodo não pode estar vazia")
     private Double width;
 
     @Range(max = 33, message = "O comprimento maximo permitido por comodo é de 33 metros")
-    @NotEmpty(message = "O comprimento do comodo não pode estar vazia")
-    private double length;
+    @NotNull(message = "O comprimento do comodo não pode estar vazia")
+    private Double length;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,6 +36,10 @@ public class Room {
     }
 
     public Room() {
+    }
+
+    public double calculateArea() {
+        return this.length * this.width;
     }
 
     public String getName() {
