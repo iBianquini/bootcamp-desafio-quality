@@ -18,12 +18,16 @@ import java.util.Optional;
 @Service
 public class PropertyService {
 
-    @Autowired
+
     private PropertyRepository repository;
 
-    @Autowired
     private DistrictService districtService;
 
+    @Autowired
+    public PropertyService(PropertyRepository repository,DistrictService districtService){
+        this.repository = repository;
+        this.districtService = districtService;
+    }
 
     public void createProperty(PropertyPayloadDTO payloadDTO) {
         Property property = payloadDTO.castToEntity();
@@ -49,7 +53,7 @@ public class PropertyService {
         return new RoomDTO(property.getName(), biggestRoom.getName(), biggestRoom.calculateArea());
     }
 
-    public List<RoomAreaDTO> getRoomsSize(long propertyId) {
+    public List<RoomAreaDTO> getRoomsArea(long propertyId) {
         Property property = this.findById(propertyId);
 
         return property.getRoomsArea();

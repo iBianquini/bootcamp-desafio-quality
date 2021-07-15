@@ -11,9 +11,10 @@ import java.util.Optional;
 @Service
 public class DistrictService {
 
-    @Autowired
+
     private DistrictRepository districtRepository;
 
+    @Autowired
     public DistrictService(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
