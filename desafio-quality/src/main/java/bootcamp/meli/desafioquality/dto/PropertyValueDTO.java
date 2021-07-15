@@ -1,6 +1,5 @@
 package bootcamp.meli.desafioquality.dto;
 
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class PropertyValueDTO {
