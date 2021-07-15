@@ -1,10 +1,11 @@
 package bootcamp.meli.desafioquality.dto;
 
 
+import bootcamp.meli.desafioquality.domain.District;
+import bootcamp.meli.desafioquality.domain.Property;
 import bootcamp.meli.desafioquality.domain.Room;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -30,6 +31,10 @@ public class PropertyPayloadDTO {
         this.name = name;
         this.districtId = districtId;
         this.rooms = rooms;
+    }
+
+    public Property castToEntity() {
+        return new Property(this.name, new District(this.districtId), this.rooms);
     }
 
     public String getName() {
