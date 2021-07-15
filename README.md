@@ -1,5 +1,3 @@
-# bootcamp-desafio-quality
-Desafio de desenvolvimento de testes
 # Meli IT Bootcamp
 
 ## Desafio Quality (Testes (Grupo 7)
