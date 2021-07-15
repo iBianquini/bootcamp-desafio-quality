@@ -15,7 +15,7 @@ public class DistrictController {
     @Autowired
     private DistrictService districtService;
 
-    @PostMapping("")
+    @PostMapping("/district")
     @ResponseStatus(HttpStatus.CREATED)
     public void createDistrict(@Valid @RequestBody District district){
         this.districtService.createDistrict(district);
