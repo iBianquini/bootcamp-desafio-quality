@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/quality/district")
+@RequestMapping("/quality")
 public class DistrictController {
 
     @Autowired
