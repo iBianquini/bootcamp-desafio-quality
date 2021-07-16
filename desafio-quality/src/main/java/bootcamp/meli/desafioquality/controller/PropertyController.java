@@ -31,19 +31,19 @@ public class PropertyController {
     @GetMapping("/property/{propertyId}/calculate-value")
     public ResponseEntity<PropertyValueDTO> calculatePropertyValue(@PathVariable long propertyId) {
         PropertyValueDTO propertyValueDTO = propertyService.calculatePropertyValue(propertyId);
-        return new ResponseEntity<>(propertyValueDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(propertyValueDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/property/{propertyId}/bigger-room")
-    public ResponseEntity<RoomDTO> getBiggerRoom(@PathVariable int propertyId) {
+    @GetMapping("/property/{propertyId}/biggest-room")
+    public ResponseEntity<RoomDTO> getBiggestRoom(@PathVariable int propertyId) {
         RoomDTO roomDTO = propertyService.getBiggestRoom(propertyId);
-        return new ResponseEntity<>(roomDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(roomDTO, HttpStatus.OK);
     }
 
     @GetMapping("/property/{propertyId}/rooms-size")
     public ResponseEntity<List<RoomAreaDTO>> getRoomsSizeList(@PathVariable long propertyId) {
         List<RoomAreaDTO> roomsAreaDTO = propertyService.getRoomsArea(propertyId);
-        return new ResponseEntity<>(roomsAreaDTO, HttpStatus.CREATED);
+        return new ResponseEntity<>(roomsAreaDTO, HttpStatus.OK);
     }
 
 }
