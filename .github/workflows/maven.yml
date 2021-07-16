@@ -1,25 +1,17 @@
-name: CI for bootcamp unit tests
+name: Java CI
 
-on:
-    # Trigger the workflow on push for the main branch
-    # and pull request for main and card-* prefix branches
-    push:
-        branches:
-            - main
-            - 'feat/**'
-    pull_request:
-        branches: [main]
-                
+on: [push]
+
 jobs:
-    build:
-        runs-on: windows-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: Set up JDK 1.11
-              uses: actions/setup-java@v1
-              with:
-                java-version: 1.11
-            - name: Build with Maven
-              run: mvn -B package --file pom.xml
-            - name: Test with Maven
-              run: mvn -B test --file pom.xml
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
