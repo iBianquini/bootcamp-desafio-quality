@@ -115,6 +115,28 @@ public class PropertyControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void should_getRoomsSize_whenValidProperty() throws Exception{
+        Property p = this.createValidPropertyPayloadDTO().castToEntity();
+        Room anotherRoom = new Room("Cozinha", 3.0, 3.0);
+        p.addRoom(anotherRoom);
+        Property persistedProperty = propertyRepository.save(p);
+
+        mockMvc.perform(get("/quality/property/" + persistedProperty.getId() + "/rooms-size"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].roomName", is("Sala")))
+                .andExpect(jsonPath("$.[0].area", is(6.0)))
+                .andExpect(jsonPath("$.[1].roomName", is("Cozinha")))
+                .andExpect(jsonPath("$.[1].area", is(9.0)));
+    }
+
+    @Test
+    void should_notGetRoomsSize_whenInvalidProperty() throws Exception{
+        long invalidId = 0;
+        mockMvc.perform(get("/quality/property/" + invalidId + "/rooms-size"))
+                .andExpect(status().isBadRequest());
+    }
+
     private PropertyPayloadDTO createValidPropertyPayloadDTO() {
         District d = this.createAndPersistDistrict();
         List<Room> rooms = new ArrayList<>();
