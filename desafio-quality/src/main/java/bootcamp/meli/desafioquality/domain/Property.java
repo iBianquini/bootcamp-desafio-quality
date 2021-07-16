@@ -65,6 +65,10 @@ public class Property {
         return roomAreaDTOS;
     }
 
+    public void addRoom (Room newRoom) {
+        this.rooms.add(newRoom);
+    }
+
     public void setDistrict(District district) {
         this.district = district;
     }

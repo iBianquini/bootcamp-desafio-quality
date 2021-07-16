@@ -22,6 +22,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -93,9 +94,31 @@ public class PropertyControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void should_getBiggestRoom_whenValidProperty() throws Exception {
+        Property p = this.createValidPropertyPayloadDTO().castToEntity();
+        Room biggestRoom = new Room("Cozinha", 3.0, 3.0);
+        p.addRoom(biggestRoom);
+        Property persistedProperty = propertyRepository.save(p);
+
+        mockMvc.perform(get("/quality/property/" + persistedProperty.getId() + "/biggest-room"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.propertyName", is(persistedProperty.getName())))
+                .andExpect(jsonPath("$.roomName", is(biggestRoom.getName())))
+                .andExpect(jsonPath("$.area", is(9.0)));
+    }
+
+    @Test
+    void should_notGetBiggestRoom_whenInvalidProperty() throws Exception {
+        long invalidId = 0;
+        mockMvc.perform(get("/quality/property/" + invalidId + "/biggest-room"))
+                .andExpect(status().isBadRequest());
+    }
+
     private PropertyPayloadDTO createValidPropertyPayloadDTO() {
         District d = this.createAndPersistDistrict();
-        List<Room> rooms = Arrays.asList(new Room("Sala", 2.0, 3.0));
+        List<Room> rooms = new ArrayList<>();
+        rooms.add(new Room("Sala", 2.0, 3.0));
         return new PropertyPayloadDTO("Chacara", d.getId(), rooms);
     }
 
