@@ -42,7 +42,7 @@ public class PropertyController {
 
     @GetMapping("/property/{propertyId}/rooms-size")
     public ResponseEntity<List<RoomAreaDTO>> getRoomsSizeList(@PathVariable long propertyId) {
-        List<RoomAreaDTO> roomsAreaDTO = propertyService.getRoomsSize(propertyId);
+        List<RoomAreaDTO> roomsAreaDTO = propertyService.getRoomsArea(propertyId);
         return new ResponseEntity<>(roomsAreaDTO, HttpStatus.CREATED);
     }
 
