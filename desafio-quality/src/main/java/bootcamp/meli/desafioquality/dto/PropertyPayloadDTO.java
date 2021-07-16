@@ -15,7 +15,7 @@ import java.util.List;
 public class PropertyPayloadDTO {
     @Size(max = 30, message = "O comprimento do nome não pode exceder 30 caracteres")
     @NotBlank(message = "O da propriedade não pode estar vazio")
-    @Pattern(regexp = "^[A-Z].*$", message = "O nome da propriedade deve comecar com uma letra maiuscula")
+    @Pattern(regexp = "^[A-Z][a-z]+", message = "O nome da propriedade deve comecar com uma letra maiuscula")
     private String name;
 
     @JsonProperty("district_id")

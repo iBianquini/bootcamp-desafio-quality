@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-class DistrictServiceUnitTest {
+class DistrictServiceTest {
 
     private DistrictService service;
 

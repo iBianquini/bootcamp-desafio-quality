@@ -31,7 +31,7 @@ public class PropertyController {
     @GetMapping("/property/{propertyId}/calculate-value")
     public ResponseEntity<PropertyValueDTO> calculatePropertyValue(@PathVariable long propertyId) {
         PropertyValueDTO propertyValueDTO = propertyService.calculatePropertyValue(propertyId);
-        return new ResponseEntity<>(propertyValueDTO, HttpStatus.OK);
+        return new ResponseEntity<>(propertyValueDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/property/{propertyId}/bigger-room")
