@@ -14,4 +14,5 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven
+        working-directory: ./desafio-quality
         run: mvn --batch-mode --update-snapshots verify
