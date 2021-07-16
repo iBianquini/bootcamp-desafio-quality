@@ -1,9 +1,10 @@
 # Meli IT Bootcamp
 
+## Desafio Quality (Testes (Grupo 7)
+
+
 [![Java CI](https://github.com/dsnunes07/bootcamp-desafio-quality/actions/workflows/maven.yml/badge.svg)](https://github.com/dsnunes07/bootcamp-desafio-quality/actions/workflows/maven.yml)
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/dsnunes07/bootcamp-desafio-quality/actions/workflows/maven.yml)
-
-## Desafio Quality (Testes (Grupo 7)
 
 
 ### Requisitos entregues:
