@@ -1,6 +1,5 @@
 package bootcamp.meli.desafioquality.controller;
 
-import bootcamp.meli.desafioquality.domain.Property;
 import bootcamp.meli.desafioquality.dto.PropertyPayloadDTO;
 import bootcamp.meli.desafioquality.dto.PropertyValueDTO;
 import bootcamp.meli.desafioquality.dto.RoomAreaDTO;
@@ -21,25 +20,47 @@ public class PropertyController {
     @Autowired
     private PropertyService propertyService;
 
+    
+    /** 
+     * Creates a property based on Body param
+     * @param propertyPayloadDTO
+     */
     @PostMapping("/property")
-    public ResponseEntity<Void> postProperty(@Valid @RequestBody PropertyPayloadDTO propertyPayloadDTO) {
-        Property property = new Property();
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void postProperty(@Valid @RequestBody PropertyPayloadDTO propertyPayloadDTO) {
         propertyService.createProperty(propertyPayloadDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    
+    /** 
+     * Calculates propertyValue if id matches a registered property
+     * @param propertyId
+     * @return ResponseEntity<PropertyValueDTO>
+     */
     @GetMapping("/property/{propertyId}/calculate-value")
     public ResponseEntity<PropertyValueDTO> calculatePropertyValue(@PathVariable long propertyId) {
         PropertyValueDTO propertyValueDTO = propertyService.calculatePropertyValue(propertyId);
         return new ResponseEntity<>(propertyValueDTO, HttpStatus.OK);
     }
 
+    
+    /** 
+     * Find the biggest room in a property if if matches a registered property
+     * @param propertyId
+     * @return ResponseEntity<RoomDTO>
+     */
     @GetMapping("/property/{propertyId}/biggest-room")
     public ResponseEntity<RoomDTO> getBiggestRoom(@PathVariable int propertyId) {
         RoomDTO roomDTO = propertyService.getBiggestRoom(propertyId);
         return new ResponseEntity<>(roomDTO, HttpStatus.OK);
     }
 
+    
+    /** 
+     * Gets a list containing all property's rooms and respectivee area if id matches a registered property
+     * @param propertyId
+     * @return ResponseEntity<List<RoomAreaDTO>>
+     */
     @GetMapping("/property/{propertyId}/rooms-size")
     public ResponseEntity<List<RoomAreaDTO>> getRoomsSizeList(@PathVariable long propertyId) {
         List<RoomAreaDTO> roomsAreaDTO = propertyService.getRoomsArea(propertyId);

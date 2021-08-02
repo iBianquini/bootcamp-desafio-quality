@@ -1,19 +1,20 @@
 package bootcamp.meli.desafioquality.controller;
 
-import bootcamp.meli.desafioquality.domain.District;
-import bootcamp.meli.desafioquality.domain.Property;
-import bootcamp.meli.desafioquality.domain.Room;
-import bootcamp.meli.desafioquality.dto.PropertyPayloadDTO;
-import bootcamp.meli.desafioquality.dto.PropertyValueDTO;
-import bootcamp.meli.desafioquality.repository.DistrictRepository;
-import bootcamp.meli.desafioquality.repository.PropertyRepository;
-import bootcamp.meli.desafioquality.service.PropertyService;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,16 +22,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.hamcrest.Matchers.*;
+import bootcamp.meli.desafioquality.domain.District;
+import bootcamp.meli.desafioquality.domain.Property;
+import bootcamp.meli.desafioquality.domain.Room;
+import bootcamp.meli.desafioquality.dto.PropertyPayloadDTO;
+import bootcamp.meli.desafioquality.repository.DistrictRepository;
+import bootcamp.meli.desafioquality.repository.PropertyRepository;
 
 @ActiveProfiles("test")
 @SpringBootTest

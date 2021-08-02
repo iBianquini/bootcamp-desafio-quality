@@ -19,6 +19,12 @@ public class DistrictService {
         this.districtRepository = districtRepository;
     }
 
+    
+    /** 
+     * @param id
+     * @return District
+     * @throws EntityNotFoundException if does not find an entity with corresponding Id
+     */
     public District findDistrictById(long id) {
         Optional<District> district = this.districtRepository.findById(id);
 
@@ -27,6 +33,12 @@ public class DistrictService {
         throw new EntityNotFoundException("Distrito não encontrado.");
     }
 
+
+    
+    /** 
+     * Creates a district
+     * @param district
+     */
     public void createDistrict(District district) {
         this.districtRepository.save(district);
     }

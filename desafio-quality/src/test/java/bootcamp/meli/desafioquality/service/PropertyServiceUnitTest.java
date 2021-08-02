@@ -55,7 +55,6 @@ public class PropertyServiceUnitTest {
     @Test
     void should_throwException_createProperty_whenInValidPayloadDueToName(){
         PropertyPayloadDTO propertyPayloadDTO = new PropertyPayloadDTO("propety", 1L,new ArrayList<>());
-        Property property = propertyPayloadDTO.castToEntity();
 
         String errorMessage = "Distrito não encontrado.";
 
@@ -102,8 +101,6 @@ public class PropertyServiceUnitTest {
 
         Property property = new Property("Property",district,rooms);
         property.setDistrict(district);
-
-        PropertyValueDTO propertyValueDTO = new PropertyValueDTO(property.getName(), property.calculatePropertyValue());
 
         String errorMessage = "Property não encontrada.";
 

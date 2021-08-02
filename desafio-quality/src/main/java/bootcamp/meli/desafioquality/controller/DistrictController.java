@@ -15,6 +15,11 @@ public class DistrictController {
     @Autowired
     private DistrictService districtService;
 
+    
+    /** 
+     * Creates a district based on Body param
+     * @param district
+     */
     @PostMapping("/district")
     @ResponseStatus(HttpStatus.CREATED)
     public void createDistrict(@Valid @RequestBody District district){
